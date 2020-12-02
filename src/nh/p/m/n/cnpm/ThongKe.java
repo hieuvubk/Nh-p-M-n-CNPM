@@ -20,45 +20,57 @@ public class ThongKe extends javax.swing.JFrame {
     /**
      * Creates new form ThongKe
      */
-    private String header[] = {"Sự kiện", "Tổng phần quà", "Tổng giá trị"};
+    private String header[] = {"Thời gian", "Tổng phần quà", "Tổng giá trị"};
     private DefaultTableModel tblModel = new DefaultTableModel(header, 0);
     public ThongKe() {
         initComponents();
+        setLocationRelativeTo(null);
+        
+    }
+    
+    public void getData(){
         Connection conn = null;
         Statement st = null;
         ResultSet rs = null;
         try {
-        String dbURL = "jdbc:mysql://localhost:3306/nmcnpm";
-        String username = "root";
-        String password = "";
-        Class.forName("com.mysql.jdbc.Driver");
-        conn = DriverManager.getConnection(dbURL, username, password);
-        if (conn != null) {
-         System.out.println("Kết nối thành công");
-        }
-        // Câu lệnh xem dữ liệu
-        String sql = "select * from  ";
-        // Tạo đối tượng thực thi câu lệnh Select
-        st = conn.createStatement();
-        // Thực thi
-        rs = st.executeQuery(sql);
-        Vector data = null;
-        tblModel.setRowCount(0);
-        // Nếu sách không tồn tại
-        if (rs.isBeforeFirst() == false) {
-         JOptionPane.showMessageDialog(this, "Chưa có thông tin!");
-         return;
-        }
-        // Trong khi chưa hết dữ liệu
-        while (rs.next()) {
-         data = new Vector();
-         
-         // Thêm một dòng vào table model
-         tblModel.addRow(data);
-        }
-        jTable1.setModel(tblModel); // Thêm dữ liệu vào table
+            String dbURL = "jdbc:mysql://localhost:3306/b2_db";
+            String username = "root";
+            String password = "";
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(dbURL, username, password);
+            if (conn != null) {
+                System.out.println("Kết nối thành công");
+            }
+            // Câu lệnh xem dữ liệu
+            String sql = "select * from thongke ";
+            // Tạo đối tượng thực thi câu lệnh Select
+            st = conn.createStatement();
+//            String tg = "select 'Thời gian' from thongke";
+//            rs = st.executeQuery(tg);
+//            rs.next();
+//            JOptionPane.showMessageDialog(null, rs.getString("Thời gian"));
+            // Thực thi
+            rs = st.executeQuery(sql);
+            Vector data = null;
+            tblModel.setRowCount(0);
+            // Nếu sách không tồn tại
+            if (rs.isBeforeFirst() == false) {
+                JOptionPane.showMessageDialog(this, "Chưa có thông tin!");
+                return;
+            }
+            // Trong khi chưa hết dữ liệu
+            while (rs.next()) {
+                data = new Vector();
+                data.add(rs.getString("Thời gian"));
+                data.add(rs.getInt("Tổng phần quà"));
+                data.add(rs.getInt("Tổng giá trị"));
+
+                // Thêm một dòng vào table model
+                tblModel.addRow(data);
+            }
+            jTable1.setModel(tblModel); // Thêm dữ liệu vào table
        } catch (Exception e) {
-         e.printStackTrace();
+            e.printStackTrace();
        }
     }
 
@@ -73,44 +85,90 @@ public class ThongKe extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        label1 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Thông kê phần thưởng");
+        setTitle("Thông kê phần quà");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setLocation(new java.awt.Point(0, 0));
 
         jScrollPane1.setBorder(null);
         jScrollPane1.setForeground(new java.awt.Color(240, 240, 240));
 
-        jTable1.setBackground(new java.awt.Color(240, 240, 240));
+        jTable1.setAutoCreateRowSorter(true);
+        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTable1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "Thời gian", "Tổng phần quà", "Tổng giá trị"
             }
         ));
+        jTable1.setAlignmentX(1.0F);
+        jTable1.setAlignmentY(1.0F);
+        jTable1.setGridColor(new java.awt.Color(0, 51, 51));
+        jTable1.setPreferredSize(new java.awt.Dimension(225, 261));
+        jTable1.setRequestFocusEnabled(false);
+        jTable1.setRowHeight(25);
+        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
+
+        jComboBox2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn sự kiện", "Trung thu", "Tết thiếu nhi 1-6", "Cuối năm" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        label1.setAlignment(java.awt.Label.CENTER);
+        label1.setFont(new java.awt.Font("Times New Roman", 1, 17)); // NOI18N
+        label1.setText("Sự kiện");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(189, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+       int choose = jComboBox2.getSelectedIndex();
+       String event;
+       if(choose == 1)
+           event = "Trung thu";
+       if(choose == 2)
+           event = "Tết thiếu nhi 1-6";
+       if(choose == 3)
+           event = "Cuối năm";
+       getData();
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,7 +206,9 @@ public class ThongKe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }
