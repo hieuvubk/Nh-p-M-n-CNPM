@@ -22,13 +22,21 @@ public class Ho extends javax.swing.JFrame {
     /**
      * Creates new form Ho
      */
-    private int soHoKhau;
+    private String soHoKhau;
     private String maSuKien;
-    public Ho(int sohokhau, String masukien) {
+    private String tenSuKien;
+    private String namSuKien;
+    public Ho(String sohokhau, String masukien, String tenSuKien, String namSuKien, String chuho) {
         initComponents();
         setLocationRelativeTo(null);
         this.soHoKhau = sohokhau;
         this.maSuKien = masukien;
+        this.tenSuKien = tenSuKien;
+        this.namSuKien = namSuKien;
+        jLabel3.setText("Số hộ khẩu: "+this.soHoKhau);
+        jLabel4.setText("Chủ hộ: "+chuho);
+        jLabel5.setText("Sự kiện: "+this.tenSuKien+" - "+this.namSuKien);
+        getdata();
     }
     
     public void getdata(){
@@ -47,7 +55,8 @@ public class Ho extends javax.swing.JFrame {
                 System.out.println("Kết nối thành công");
             }
             // Câu lệnh xem dữ liệu
-            String sql = "select * from thongke ";
+            String sql = "select 'hoten', 'TenPhanQua', 'giatri'  from phatThuong, qua "
+                    + "where soHoKhau = "+soHoKhau+" and phatthuong.maQua = qua.maQua";
             // Tạo đối tượng thực thi câu lệnh Select
             st = conn.createStatement();
             // Thực thi
@@ -96,6 +105,7 @@ public class Ho extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setLocation(new java.awt.Point(0, 0));
 
+        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -137,11 +147,11 @@ public class Ho extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -200,7 +210,7 @@ public class Ho extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ho(12,"dfjkg").setVisible(true);
+                new Ho("43","dfjkg","djks","kjds","sk").setVisible(true);
             }
         });
     }
