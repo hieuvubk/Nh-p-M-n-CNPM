@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package services;
+package nh.p.m.n.cnpm;
 
 import Bean.NhanKhauBean;
 import java.sql.Connection;
@@ -25,7 +25,7 @@ public class TreEmService {
     try{
     Connection connection = MysqlConnection.getMysqlConnection();
     String query = "SELECT ID,hoTen,gioiTinh, YEAR(CURRENT_TIMESTAMP) - YEAR(namSinh) as Tuoi "
-    + "FROM nhan_khau WHERE YEAR(CURRENT_TIMESTAMP) - YEAR(namSinh) <= 18"
+    + "FROM nhan_khau WHERE YEAR(CURRENT_TIMESTAMP) - YEAR(namSinh) <= 18";
     PreparedStatement preparedStatement = (PreparedStatement)connection.prepareStatement(query);
     ResultSet rs = preparedStatement.executeQuery();
     while (rs.next()){
