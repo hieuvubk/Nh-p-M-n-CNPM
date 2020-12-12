@@ -31,7 +31,7 @@ private DefaultTableModel tblModel = new DefaultTableModel(header, 0);
             Statement st = null;
             ResultSet rs = null;
             try {
-            String dbURL = "jdbc:mysql://localhost:3306/mysql_db";
+            String dbURL = "jdbc:mysql://localhost:3306/nmcnpm";
             String username = "root";
             String password = "";
             conn = DriverManager.getConnection(dbURL, username, password);

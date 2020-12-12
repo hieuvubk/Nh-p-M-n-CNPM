@@ -46,7 +46,7 @@ public class Ho extends javax.swing.JFrame {
         Statement st = null;
         ResultSet rs = null;
         try {
-            String dbURL = "jdbc:mysql://localhost:3306/b2_db";
+            String dbURL = "jdbc:mysql://localhost:3306/nmcnpm";
             String username = "root";
             String password = "";
             Class.forName("com.mysql.jdbc.Driver");
@@ -55,8 +55,8 @@ public class Ho extends javax.swing.JFrame {
                 System.out.println("Kết nối thành công");
             }
             // Câu lệnh xem dữ liệu
-            String sql = "select 'hoten', 'TenPhanQua', 'giatri'  from phatThuong, qua "
-                    + "where soHoKhau = "+soHoKhau+" and phatthuong.maQua = qua.maQua";
+            String sql = "select 'HoTen', 'Ten', 'Gia'  from phatqua, qua "
+                    + "where SoHoKhau = "+soHoKhau+" and phatqua.MaQua = qua.MaQua";
             // Tạo đối tượng thực thi câu lệnh Select
             st = conn.createStatement();
             // Thực thi
@@ -71,14 +71,15 @@ public class Ho extends javax.swing.JFrame {
             // Trong khi chưa hết dữ liệu
             while (rs.next()) {
                 data = new Vector();
-                data.add(rs.getString("Số hộ khẩu"));
-                data.add(rs.getString("Phần quà"));
-                data.add(rs.getInt("Giá trị"));
+                data.add(rs.getString("HoTen"));
+                data.add(rs.getString("Ten"));
+                data.add(rs.getInt("Gia"));
 
                 // Thêm một dòng vào table model
                 tblModel.addRow(data);
             }
             jTable1.setModel(tblModel); // Thêm dữ liệu vào table
+            conn.close();
        } catch (Exception e) {
             e.printStackTrace();
        }

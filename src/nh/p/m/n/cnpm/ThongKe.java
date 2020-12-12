@@ -39,7 +39,7 @@ public class ThongKe extends javax.swing.JFrame {
         Statement st = null;
         ResultSet rs = null;
         try {
-            String dbURL = "jdbc:mysql://localhost:3306/b2_db";
+            String dbURL = "jdbc:mysql://localhost:3306/nmcnpm";
             String username = "root";
             String password = "";
             Class.forName("com.mysql.jdbc.Driver");
@@ -48,11 +48,12 @@ public class ThongKe extends javax.swing.JFrame {
                 System.out.println("Kết nối thành công");
             }
             // Câu lệnh xem dữ liệu
-            String sql = "select count(maQua) 'Tổng phần quà', sum(giaTri) 'Tổng giá trị' "
-                    + "from 'phatthuong' inner join 'sukien' "
-                    + "on 'phatthuong'.'masukien' = 'sukien'.'masukien'"
-                    + "where 'sukien' = " +suKien+ " and year('thoigian') = "+nam
-                    + "group by masukien";
+            String sql = "select count(MaQua) 'Tổng phần quà', sum(Gia) 'Tổng giá trị' "
+                    + "from 'phatqua' inner join 'sukien' "
+                    + "on 'phatqua'.'MaSuKien' = 'sukien'.'MaSuKien'"
+                    + " inner join 'qua' on phatqua.MaQua = qua.MaQua"
+                    + " where 'TenSuKien' = " +suKien+ " and year('ThoiGian') = "+nam
+                    + " group by MaSuKien";
             // Tạo đối tượng thực thi câu lệnh Select
             st = conn.createStatement();
             // Thực thi
@@ -74,6 +75,7 @@ public class ThongKe extends javax.swing.JFrame {
                 tblModel.addRow(data);
             }
             jTable1.setModel(tblModel); // Thêm dữ liệu vào table
+            conn.close();
        } catch (Exception e) {
             e.printStackTrace();
        }
@@ -95,12 +97,12 @@ public class ThongKe extends javax.swing.JFrame {
                 System.out.println("Kết nối thành công");
             }
             // Câu lệnh xem dữ liệu
-            String sql = "select tenQua 'Loại quà', count(soHoKhau) 'Tổng phần quà', sum(giaTri) 'Tổng giá trị' "
-                    + "from 'phatthuong' inner join 'sukien' "
-                    + "on 'phatthuong'.'masukien' = 'sukien'.'masukien', Qua"
-                    + "where 'sukien' = " +suKien+ " and year('thoigian') = "+nam
-                    + " and 'phatthuong'.'maqua' = Qua.'maqua'"
-                    + "group by masukien, tenQua";
+            String sql = "select Ten 'Loại quà', count(SoHoKhau) 'Tổng phần quà', sum(Gia) 'Tổng giá trị' "
+                    + "from 'phatqua' inner join 'sukien' "
+                    + "on 'phatqua'.'MaSuKien' = 'sukien'.'MaSuKien', qua"
+                    + "where 'TenSuKien' = " +suKien+ " and year('ThoiGian') = "+nam
+                    + " and phatqua.MaQua = qua.MaQua"
+                    + "group by MaSuKien, Ten";
             // Tạo đối tượng thực thi câu lệnh Select
             st = conn.createStatement();
             // Thực thi
@@ -127,18 +129,18 @@ public class ThongKe extends javax.swing.JFrame {
             //in tong gia tri cac phan qua
             jLabel4.setOpaque(true);
             jLabel3.setText("Tổng giá trị:");
-            String tong = "select sum(giaTri) 'Tổng giá trị' "
-                    + "from 'phatthuong' inner join 'sukien' "
-                    + "on 'phatthuong'.'masukien' = 'sukien'.'masukien', Qua"
-                    + "where 'sukien' = " +suKien+ " and year('thoigian') = "+nam
-                    + "group by masukien";
+            String tong = "select sum(Gia) 'Tổng giá trị' "
+                    + "from 'phatqua' inner join 'sukien' "
+                    + "on 'phatqua'.'MaSuKien' = 'sukien'.'MaSuKien', qua"
+                    + "where 'TenSuKien' = " +suKien+ " and year('ThoiGian') = "+nam
+                    + "group by MaSuKien";
             // Tạo đối tượng thực thi câu lệnh Select
             st = conn.createStatement();
             // Thực thi
             rs = st.executeQuery(tong);
             rs.next();
             jLabel4.setText(rs.getString("Tổng giá trị"));
-            
+            conn.close();
        } catch (Exception e) {
             e.printStackTrace();
        }

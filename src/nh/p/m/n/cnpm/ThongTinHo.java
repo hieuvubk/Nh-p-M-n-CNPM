@@ -38,7 +38,7 @@ public class ThongTinHo extends javax.swing.JFrame {
         Statement st = null;
         ResultSet rs = null;
         try {
-            String dbURL = "jdbc:mysql://localhost:3306/b2_db";
+            String dbURL = "jdbc:mysql://localhost:3306/nmcnpm";
             String username = "root";
             String password = "";
             Class.forName("com.mysql.jdbc.Driver");
@@ -47,11 +47,13 @@ public class ThongTinHo extends javax.swing.JFrame {
                 System.out.println("Kết nối thành công");
             }
             // Câu lệnh xem dữ liệu
-            String sql = "select 'sohokhau', 'chuho' from 'phatthuong' inner join 'sukien' "
-                    + "on 'phatthuong'.'masukien' = 'sukien'.'masukien'"
-                    + "where 'sukien' = " +suKien+ " and year('thoigian') = "+nam;
-            String eventID = "select 'maSuKien' from 'sukien' "
-                    + "where 'sukien' = " +suKien+ " and year('thoigian') = "+nam;
+            String sql = "select 'SoHoKhau', 'HoTenChuHo' from 'phatqua' inner join 'sukien' "
+                    + "on 'phatqua'.'MaSuKien' = 'sukien'.'MaSuKien'"
+                    + "where 'TenSuKien' = " +suKien+ " and year('ThoiGian') = "+nam;
+            
+            String eventID = "select 'MaSuKien' from 'sukien' "
+                    + "where 'TenSuKien' = " +suKien+ " and year('ThoiGian') = "+nam;
+            
             // Tạo đối tượng thực thi câu lệnh Select
             st = conn.createStatement();
             // Thực thi
@@ -70,13 +72,14 @@ public class ThongTinHo extends javax.swing.JFrame {
             // Trong khi chưa hết dữ liệu
             while (rs.next()){
                 data = new Vector();
-                data.add(rs.getInt("Số hộ khẩu"));
-                data.add(rs.getInt("Chủ hộ"));
+                data.add(rs.getInt("SoHoKhau"));
+                data.add(rs.getInt("HoTenChuHo"));
 
                 // Thêm một dòng vào table model
                 tblModel.addRow(data);
             }
             jTable1.setModel(tblModel); // Thêm dữ liệu vào table
+            conn.close();
        } catch (Exception e) {
             e.printStackTrace();
        }
