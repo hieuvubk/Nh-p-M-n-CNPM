@@ -55,8 +55,8 @@ public class Ho extends javax.swing.JFrame {
                 System.out.println("Kết nối thành công");
             }
             // Câu lệnh xem dữ liệu
-            String sql = "select 'HoTen', 'Ten', 'Gia'  from phatqua, qua "
-                    + "where SoHoKhau = "+soHoKhau+" and phatqua.MaQua = qua.MaQua";
+            String sql = "select HoTen, Ten, Gia  from phatqua, qua "
+                    + "where SoHoKhau = '"+soHoKhau+"' and phatqua.MaQua = qua.MaQua";
             // Tạo đối tượng thực thi câu lệnh Select
             st = conn.createStatement();
             // Thực thi

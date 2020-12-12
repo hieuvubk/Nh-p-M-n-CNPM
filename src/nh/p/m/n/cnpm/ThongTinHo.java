@@ -47,17 +47,21 @@ public class ThongTinHo extends javax.swing.JFrame {
                 System.out.println("Kết nối thành công");
             }
             // Câu lệnh xem dữ liệu
-            String sql = "select 'SoHoKhau', 'HoTenChuHo' from 'phatqua' inner join 'sukien' "
-                    + "on 'phatqua'.'MaSuKien' = 'sukien'.'MaSuKien'"
-                    + "where 'TenSuKien' = " +suKien+ " and year('ThoiGian') = "+nam;
+            String sql = "select SoHoKhau, HoTenChuHo from phatqua inner join sukien "
+                    + " on phatqua.MaSuKien = sukien.MaSuKien"
+                    + " where TenSuKien = '" +suKien+ "' and year(ThoiGian) = "+nam;
             
-            String eventID = "select 'MaSuKien' from 'sukien' "
-                    + "where 'TenSuKien' = " +suKien+ " and year('ThoiGian') = "+nam;
+            String eventID = "select MaSuKien from sukien "
+                    + "where TenSuKien = '" +suKien+ "' and year(ThoiGian) = "+nam;
             
             // Tạo đối tượng thực thi câu lệnh Select
             st = conn.createStatement();
             // Thực thi
             rs = st.executeQuery(eventID);
+            if (rs.isBeforeFirst() == false) {
+                JOptionPane.showMessageDialog(this, "Chưa có thông tin event!");
+                return;
+            }
             rs.next();
             this.maSuKien = rs.getString("masukien");
             

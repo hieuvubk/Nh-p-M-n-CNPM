@@ -18,13 +18,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BangTE extends javax.swing.JFrame {
 
-private String header[] = {"so ho khau", "Tre Em"};
+private String header[] = {"Họ tên", "Số hộ khẩu", "Ngày sinh"};
 private DefaultTableModel tblModel = new DefaultTableModel(header, 0);
     /**
      * Creates new form BangTE
      */
     public BangTE() {
         initComponents();
+        setLocationRelativeTo(null);
+        data();
     }
     public void data(){
             Connection conn = null;
@@ -39,7 +41,8 @@ private DefaultTableModel tblModel = new DefaultTableModel(header, 0);
             System.out.println("Kết nối thành công");
             }
             // Câu lệnh xem dữ liệu
-            String sql = "select 'SoHoKhau','HoTen', 'NgaySinh'  from 'nguoi' "
+            String sql = "select SoHoKhau, HoTen, NgaySinh"
+                    + " from nguoi "
                     + "where year(Now()) - year(NgaySinh) <= 18";
             // Tạo đối tượng thực thi câu lệnh Select
             st = conn.createStatement();
@@ -48,15 +51,16 @@ private DefaultTableModel tblModel = new DefaultTableModel(header, 0);
             Vector data = null;
             tblModel.setRowCount(0);
             // Nếu sách không tồn tại
+           
             if (rs.isBeforeFirst() == false) {
-            JOptionPane.showMessageDialog(this, "Chưa có thông tin");
-            return;
+                JOptionPane.showMessageDialog(this, "Chưa có thông tin");
+                return;
            }
            // Trong khi chưa hết dữ liệu
            while (rs.next()) {
             data = new Vector();
-            data.add(rs.getString("SoHoKhau"));
             data.add(rs.getString("HoTen"));
+            data.add(rs.getString("SoHoKhau"));
             data.add(rs.getDate("NgaySinh"));
             // Thêm một dòng vào table model
             tblModel.addRow(data);
@@ -79,6 +83,7 @@ private DefaultTableModel tblModel = new DefaultTableModel(header, 0);
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Danh sách trẻ em dưới 18 tuổi");
         setBounds(new java.awt.Rectangle(4, 3, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFont(new java.awt.Font("Times New Roman", 0, 10)); // NOI18N
@@ -87,32 +92,32 @@ private DefaultTableModel tblModel = new DefaultTableModel(header, 0);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Họ tên", "Số hộ khẩu", "Ngày Sinh"
             }
         ));
+        jTable1.setPreferredSize(new java.awt.Dimension(225, 317));
+        jTable1.setRowHeight(25);
+        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();

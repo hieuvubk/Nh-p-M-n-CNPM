@@ -125,7 +125,7 @@ public class GhiNhanQua {
             
             // lay thong tin tre em
             
-            String sql = "select 'SoHoKhau','HoTen'  from 'nguoi' "
+            String sql = "select SoHoKhau,HoTen  from nguoi "
                     + "where year(Now()) - year(NgaySinh) <= 18";
             st = conn.createStatement();
             rs = st.executeQuery(sql);
@@ -185,8 +185,7 @@ public class GhiNhanQua {
        } catch (Exception e) {
             e.printStackTrace();
        }
-        
-        
+          
     }
 
     

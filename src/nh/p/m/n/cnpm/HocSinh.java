@@ -30,6 +30,7 @@ public class HocSinh extends javax.swing.JFrame {
     
     public HocSinh() throws ClassNotFoundException, SQLException {
         initComponents();
+        setLocationRelativeTo(null);
         Statement st = null;
         ResultSet rs = null;
         

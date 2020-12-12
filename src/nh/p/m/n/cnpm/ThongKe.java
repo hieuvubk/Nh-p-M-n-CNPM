@@ -48,12 +48,12 @@ public class ThongKe extends javax.swing.JFrame {
                 System.out.println("Kết nối thành công");
             }
             // Câu lệnh xem dữ liệu
-            String sql = "select count(MaQua) 'Tổng phần quà', sum(Gia) 'Tổng giá trị' "
-                    + "from 'phatqua' inner join 'sukien' "
-                    + "on 'phatqua'.'MaSuKien' = 'sukien'.'MaSuKien'"
-                    + " inner join 'qua' on phatqua.MaQua = qua.MaQua"
-                    + " where 'TenSuKien' = " +suKien+ " and year('ThoiGian') = "+nam
-                    + " group by MaSuKien";
+            String sql = "select count(phatqua.MaQua) 'Tổng phần quà', sum(Gia) 'Tổng giá trị' \n" +
+                        "from phatqua inner join sukien\n" +
+                        "on phatqua.MaSuKien = sukien.MaSuKien\n" +
+                        "inner join qua on phatqua.MaQua = qua.MaQua\n" +
+                        "where TenSuKien = '"+suKien+"' and year(ThoiGian) = "+nam+"\n" +
+                        "group by phatqua.MaSuKien;";
             // Tạo đối tượng thực thi câu lệnh Select
             st = conn.createStatement();
             // Thực thi
@@ -88,7 +88,7 @@ public class ThongKe extends javax.swing.JFrame {
         Statement st = null;
         ResultSet rs = null;
         try {
-            String dbURL = "jdbc:mysql://localhost:3306/b2_db";
+            String dbURL = "jdbc:mysql://localhost:3306/nmcnpm";
             String username = "root";
             String password = "";
             Class.forName("com.mysql.jdbc.Driver");
@@ -98,11 +98,11 @@ public class ThongKe extends javax.swing.JFrame {
             }
             // Câu lệnh xem dữ liệu
             String sql = "select Ten 'Loại quà', count(SoHoKhau) 'Tổng phần quà', sum(Gia) 'Tổng giá trị' "
-                    + "from 'phatqua' inner join 'sukien' "
-                    + "on 'phatqua'.'MaSuKien' = 'sukien'.'MaSuKien', qua"
-                    + "where 'TenSuKien' = " +suKien+ " and year('ThoiGian') = "+nam
+                    + " from phatqua inner join sukien "
+                    + " on phatqua.MaSuKien = sukien.MaSuKien, qua "
+                    + " where TenSuKien = '" +suKien+ "' and year(ThoiGian) = "+nam
                     + " and phatqua.MaQua = qua.MaQua"
-                    + "group by MaSuKien, Ten";
+                    + " group by phatqua.MaSuKien, Ten";
             // Tạo đối tượng thực thi câu lệnh Select
             st = conn.createStatement();
             // Thực thi
@@ -130,10 +130,10 @@ public class ThongKe extends javax.swing.JFrame {
             jLabel4.setOpaque(true);
             jLabel3.setText("Tổng giá trị:");
             String tong = "select sum(Gia) 'Tổng giá trị' "
-                    + "from 'phatqua' inner join 'sukien' "
-                    + "on 'phatqua'.'MaSuKien' = 'sukien'.'MaSuKien', qua"
-                    + "where 'TenSuKien' = " +suKien+ " and year('ThoiGian') = "+nam
-                    + "group by MaSuKien";
+                    + " from phatqua inner join sukien "
+                    + " on phatqua.MaSuKien = sukien.MaSuKien, qua"
+                    + " where TenSuKien = '" +suKien+ "' and year(ThoiGian) = "+nam
+                    + " group by phatqua.MaSuKien";
             // Tạo đối tượng thực thi câu lệnh Select
             st = conn.createStatement();
             // Thực thi
