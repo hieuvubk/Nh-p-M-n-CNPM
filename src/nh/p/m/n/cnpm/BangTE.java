@@ -39,7 +39,8 @@ private DefaultTableModel tblModel = new DefaultTableModel(header, 0);
             System.out.println("Kết nối thành công");
             }
             // Câu lệnh xem dữ liệu
-            String sql = "select 'SoHoKhau','HoTen', 'NgaySinh' from 'nguoi' ";
+            String sql = "select 'SoHoKhau','HoTen', 'NgaySinh'  from 'nguoi' "
+                    + "where year(Now()) - year(NgaySinh) <= 18";
             // Tạo đối tượng thực thi câu lệnh Select
             st = conn.createStatement();
             // Thực thi
@@ -49,20 +50,22 @@ private DefaultTableModel tblModel = new DefaultTableModel(header, 0);
             // Nếu sách không tồn tại
             if (rs.isBeforeFirst() == false) {
             JOptionPane.showMessageDialog(this, "Chưa có thông tin");
-  return;
- }
- // Trong khi chưa hết dữ liệu
- while (rs.next()) {
-  data = new Vector();
-  data.add(rs.getInt("SoHoKhau"));
-  data.add(rs.getString("TreEm"));
-  // Thêm một dòng vào table model
-  tblModel.addRow(data);
- }
- jTable1.setModel(tblModel); // Thêm dữ liệu vào table
-} catch (Exception e) {
-  e.printStackTrace();
-}
+            return;
+           }
+           // Trong khi chưa hết dữ liệu
+           while (rs.next()) {
+            data = new Vector();
+            data.add(rs.getString("SoHoKhau"));
+            data.add(rs.getString("HoTen"));
+            data.add(rs.getDate("NgaySinh"));
+            // Thêm một dòng vào table model
+            tblModel.addRow(data);
+           }
+           jTable1.setModel(tblModel); // Thêm dữ liệu vào table
+           conn.close();
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
     }
     
             

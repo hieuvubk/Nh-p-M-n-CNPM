@@ -72,8 +72,8 @@ public class ThongTinHo extends javax.swing.JFrame {
             // Trong khi chưa hết dữ liệu
             while (rs.next()){
                 data = new Vector();
-                data.add(rs.getInt("SoHoKhau"));
-                data.add(rs.getInt("HoTenChuHo"));
+                data.add(rs.getString("SoHoKhau"));
+                data.add(rs.getString("HoTenChuHo"));
 
                 // Thêm một dòng vào table model
                 tblModel.addRow(data);
