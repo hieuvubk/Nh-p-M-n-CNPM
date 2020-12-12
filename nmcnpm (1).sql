@@ -138,7 +138,7 @@ CREATE TABLE `quantrivien` (
 --
 
 CREATE TABLE `sukien` (
-  `MaSuKien` char(10) NOT NULL,
+  `MaSuKien` char(6) NOT NULL,
   `TenSuKien` varchar(30) DEFAULT NULL,
   `ThoiGian` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
