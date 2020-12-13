@@ -31,8 +31,4 @@ public class Connector {
         return conn;
     }
     
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Connector conn = new Connector();
-        Connection a = conn.getConnection();
-    }
 }
