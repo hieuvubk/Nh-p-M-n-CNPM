@@ -19,6 +19,7 @@ import java.util.logging.Logger;
  * @author HUY.NX183556
  */
 public class DangNhap extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form DangNhap
@@ -27,6 +28,7 @@ public class DangNhap extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
