@@ -34,14 +34,14 @@ CREATE TABLE `hocsinh` (
   `DiaChi` varchar(30) DEFAULT NULL,
   `Truong` varchar(30) DEFAULT NULL,
   `Lop` int(11) DEFAULT NULL,
-  `ThanhTich` varchar(30) DEFAULT NOT NULL
+  `ThanhTich` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `hocsinh`
 --
 
-INSERT INTO `hocsinh` (`SoHoKhau`, `HoTen`, `NgaySinh`, `DiaChi`, `Truong`, `Lop`, `ThanhTich`) VALUES
+-- INSERT INTO `hocsinh` (`SoHoKhau`, `HoTen`, `NgaySinh`, `DiaChi`, `Truong`, `Lop`, `ThanhTich`) VALUES
 -- ('1', 'Nguyen Van B', '2000-05-20', 'Ha Noi', 'BK', 12, 'Gioi'),
 -- ('1', 'Vũ Đức Hiếu', '2000-05-21', 'Vũ Xuân Thiều', 'BK', 10, 'Kha');
 
