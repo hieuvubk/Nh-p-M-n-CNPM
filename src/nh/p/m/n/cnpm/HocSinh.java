@@ -15,6 +15,8 @@ import java.sql.Statement;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,11 +38,7 @@ public class HocSinh extends javax.swing.JFrame {
         ResultSet dropRs = null;
         Connector connector = new Connector();
         Connection conn = connector.getConnection();
-        
-        // Xóa bảng 'hocsinh' cũ đi
         String drop = "DELETE FROM hocsinh;";
-        
-        // Lọc dữ liệu từ bảng 'nguoi'
         String sql = "SELECT * from nguoi where NgheNghiep like n'%Học Sinh%';";
         st = conn.createStatement();
 //        dropSt = conn.createStatement();
@@ -113,15 +111,41 @@ public class HocSinh extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jFrame2 = new javax.swing.JFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
+        jFrame2.getContentPane().setLayout(jFrame2Layout);
+        jFrame2Layout.setHorizontalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame2Layout.setVerticalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Danh sách học sinh");
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(255, 51, 102));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(new java.awt.Color(255, 204, 204));
+        setLocationByPlatform(true);
 
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable1.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
@@ -133,8 +157,8 @@ public class HocSinh extends javax.swing.JFrame {
                 "Số hộ khẩu", "Họ tên", "Ngày sinh", "Địa chỉ", "Trường", "Lớp", "Danh hiệu"
             }
         ));
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable1.setCellSelectionEnabled(true);
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Save");
@@ -151,7 +175,7 @@ public class HocSinh extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -172,6 +196,7 @@ public class HocSinh extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         try {
             save();
+            JOptionPane.showMessageDialog(null, "Đã lưu");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(HocSinh.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -222,8 +247,9 @@ public class HocSinh extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton jButton1;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JFrame jFrame2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration                   
 }
-
