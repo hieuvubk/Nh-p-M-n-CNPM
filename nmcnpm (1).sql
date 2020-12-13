@@ -34,7 +34,7 @@ CREATE TABLE `hocsinh` (
   `DiaChi` varchar(30) DEFAULT NULL,
   `Truong` varchar(30) DEFAULT NULL,
   `Lop` int(11) DEFAULT NULL,
-  `ThanhTich` varchar(30) DEFAULT NULL
+  `ThanhTich` varchar(30) DEFAULT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -42,8 +42,8 @@ CREATE TABLE `hocsinh` (
 --
 
 INSERT INTO `hocsinh` (`SoHoKhau`, `HoTen`, `NgaySinh`, `DiaChi`, `Truong`, `Lop`, `ThanhTich`) VALUES
-('1', 'Nguyen Van B', '2000-05-20', 'Ha Noi', 'BK', 12, 'Gioi'),
-('1', 'Vũ Đức Hiếu', '2000-05-21', 'Vũ Xuân Thiều', 'BK', 10, 'Kha');
+-- ('1', 'Nguyen Van B', '2000-05-20', 'Ha Noi', 'BK', 12, 'Gioi'),
+-- ('1', 'Vũ Đức Hiếu', '2000-05-21', 'Vũ Xuân Thiều', 'BK', 10, 'Kha');
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,8 @@ CREATE TABLE `hogiadinh` (
 --
 
 INSERT INTO `hogiadinh` (`SoHoKhau`, `HoTenChuHo`, `SoNha`, `Pho`, `Phuong`, `Quan`) VALUES
-('1', 'Vũ Quang Tạo', '14a', 'Vũ Xuân Thiều', 'Sài Đồng', 'Long Biên');
+('1', 'Vũ Quang Tạo', '14a', 'Vũ Xuân Thiều', 'Sài Đồng', 'Long Biên')
+('3', 'Vũ Văn F', '16', 'Xuân Thiều', 'Sài Đồng', 'Long Biên');
 
 -- --------------------------------------------------------
 
@@ -88,10 +89,10 @@ CREATE TABLE `nguoi` (
 --
 
 INSERT INTO `nguoi` (`HoTen`, `SoHoKhau`, `NgaySinh`, `DiaChi`, `QueQuan`, `NoiSinh`, `NgheNghiep`) VALUES
-('Nguyen Van A', '1', '2000-05-20', 'Ha Noi', 'Hung Yen', 'Hung Yen', 'Nha Bao'),
-('Nguyen Van B', '1', '2000-05-20', 'Ha Noi', 'Hung Yen', 'Hung Yen', 'Học Sinh'),
-('Nguyen Van C', '1', '2000-05-20', 'Ha Noi', 'Hung Yen', 'Hung Yen', 'Nha Bao'),
-('Nguyen Van D', '1', '2000-05-20', 'Ha Noi', 'Hung Yen', 'Hung Yen', 'Nha Bao'),
+('Nguyễn Văn A', '1', '2010-05-20', 'Ha Noi', 'Hưng Yên', 'Hưng Yên', 'Nha Bao'),
+('Nguyễn Văn B', '1', '2005-05-20', 'Ha Noi', 'Hưng Yên', 'Hưng Yên', 'Học Sinh'),
+('Nguyễn Văn C', '1', '2009-05-20', 'Ha Noi', 'Hưng Yên', 'Hưng Yên', 'Nha Bao'),
+('Nguyễn Văn D', '1', '2000-05-20', 'Ha Noi', 'Hưng Yên', 'Hưng Yên', 'Nha Bao'),
 ('Vũ Đức Hiếu', '1', '2000-05-21', 'Vũ Xuân Thiều', 'Hưng Yên', 'Hưng Yên', 'Học Sinh');
 
 -- --------------------------------------------------------
@@ -131,6 +132,8 @@ CREATE TABLE `quantrivien` (
   `MatKhau` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `quantrivien` (`TaiKhoan`, `MatKhau`) VALUES
+('admin', 123456);
 -- --------------------------------------------------------
 
 --
