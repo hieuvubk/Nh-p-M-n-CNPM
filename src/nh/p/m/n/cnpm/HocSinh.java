@@ -33,11 +33,18 @@ public class HocSinh extends javax.swing.JFrame {
         initComponents();
         Statement st = null;
         ResultSet rs = null;
-        
+        ResultSet dropRs = null;
         Connector connector = new Connector();
         Connection conn = connector.getConnection();
-        String sql = "SELECT * from nguoi where NgheNghiep like n'%Học Sinh%'";
+        
+        // Xóa bảng 'hocsinh' cũ đi
+        String drop = "DELETE FROM hocsinh;";
+        
+        // Lọc dữ liệu từ bảng 'nguoi'
+        String sql = "SELECT * from nguoi where NgheNghiep like n'%Học Sinh%';";
         st = conn.createStatement();
+//        dropSt = conn.createStatement();
+        st.executeUpdate(drop);
         rs = st.executeQuery(sql);
         Vector data = null;
         tblModel.setRowCount(0);
@@ -219,3 +226,4 @@ public class HocSinh extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration                   
 }
+
