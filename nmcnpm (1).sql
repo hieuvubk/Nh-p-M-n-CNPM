@@ -121,6 +121,14 @@ CREATE TABLE `qua` (
   `SoLuong` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `qua` (`MaQua`, `Ten`, `Gia`, `SoLuong`) VALUES
+('mq001', 'bánh', '20000', '1'),
+('mq002', 'kẹo', '20000', '1'),
+('mq003', 'bimbim', '20000', '1'),
+('cn001', 'Phần thưởng học sinh giỏi','100000','10'),
+('cn002', 'Phần thưởng học tiên tiến','70000','7'),
+('cn003', 'Phần thưởng học khá','50000','5');
+
 -- --------------------------------------------------------
 
 --
