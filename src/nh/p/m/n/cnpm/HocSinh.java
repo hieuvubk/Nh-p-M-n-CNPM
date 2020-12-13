@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package nh.p.m.n.cnpm;
 
 import java.sql.Connection;
@@ -30,6 +31,7 @@ public class HocSinh extends javax.swing.JFrame {
     
     public HocSinh() throws ClassNotFoundException, SQLException {
         initComponents();
+        setLocationRelativeTo(null);
         Statement st = null;
         ResultSet rs = null;
         
