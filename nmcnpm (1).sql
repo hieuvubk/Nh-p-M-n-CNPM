@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `hocsinh` (
-  `SoHoKhau` char(10) NOT NULL,
+  `SoHoKhau` varchar(10) NOT NULL,
   `HoTen` varchar(30) NOT NULL,
   `NgaySinh` date DEFAULT NULL,
   `DiaChi` varchar(30) DEFAULT NULL,
@@ -52,9 +52,9 @@ INSERT INTO `hocsinh` (`SoHoKhau`, `HoTen`, `NgaySinh`, `DiaChi`, `Truong`, `Lop
 --
 
 CREATE TABLE `hogiadinh` (
-  `SoHoKhau` char(1) NOT NULL,
+  `SoHoKhau` varchar(1) NOT NULL,
   `HoTenChuHo` varchar(30) DEFAULT NULL,
-  `SoNha` char(11) DEFAULT NULL,
+  `SoNha` varchar(11) DEFAULT NULL,
   `Pho` varchar(30) DEFAULT NULL,
   `Phuong` varchar(30) DEFAULT NULL,
   `Quan` varchar(30) DEFAULT NULL
@@ -75,7 +75,7 @@ INSERT INTO `hogiadinh` (`SoHoKhau`, `HoTenChuHo`, `SoNha`, `Pho`, `Phuong`, `Qu
 
 CREATE TABLE `nguoi` (
   `HoTen` varchar(30) NOT NULL,
-  `SoHoKhau` char(1) NOT NULL,
+  `SoHoKhau` varchar(1) NOT NULL,
   `NgaySinh` date DEFAULT NULL,
   `DiaChi` varchar(50) DEFAULT NULL,
   `QueQuan` varchar(50) DEFAULT NULL,
@@ -101,10 +101,10 @@ INSERT INTO `nguoi` (`HoTen`, `SoHoKhau`, `NgaySinh`, `DiaChi`, `QueQuan`, `NoiS
 --
 
 CREATE TABLE `phatqua` (
-  `MaSuKien` char(10) NOT NULL,
+  `MaSuKien` varchar(10) NOT NULL,
   `HoTen` varchar(30) NOT NULL,
-  `SoHoKhau` char(10) NOT NULL,
-  `MaQua` char(10) DEFAULT NULL
+  `SoHoKhau` varchar(10) NOT NULL,
+  `MaQua` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -114,7 +114,7 @@ CREATE TABLE `phatqua` (
 --
 
 CREATE TABLE `qua` (
-  `MaQua` char(10) NOT NULL,
+  `MaQua` varchar(10) NOT NULL,
   `Ten` varchar(30) DEFAULT NULL,
   `Gia` int(11) DEFAULT NULL,
   `SoLuong` int(11) NOT NULL
@@ -127,8 +127,8 @@ CREATE TABLE `qua` (
 --
 
 CREATE TABLE `quantrivien` (
-  `TaiKhoan` char(30) NOT NULL,
-  `MatKhau` char(30) DEFAULT NULL
+  `TaiKhoan` varchar(30) NOT NULL,
+  `MatKhau` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -138,7 +138,7 @@ CREATE TABLE `quantrivien` (
 --
 
 CREATE TABLE `sukien` (
-  `MaSuKien` char(6) NOT NULL,
+  `MaSuKien` varchar(10) NOT NULL,
   `TenSuKien` varchar(30) DEFAULT NULL,
   `ThoiGian` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
