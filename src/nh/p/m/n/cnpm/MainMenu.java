@@ -145,7 +145,8 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
-      new DangNhap().setVisible(true);
+        
+        new DangNhap().setVisible(true);
     }//GEN-LAST:event_LogOutActionPerformed
 
     private void dshsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dshsActionPerformed
