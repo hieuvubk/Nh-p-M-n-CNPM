@@ -19,6 +19,7 @@ import java.util.logging.Logger;
  * @author HUY.NX183556
  */
 public class DangNhap extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form DangNhap
@@ -27,6 +28,7 @@ public class DangNhap extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,7 +49,7 @@ public class DangNhap extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Login");
@@ -163,7 +165,8 @@ public class DangNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
+       txtUsername.setText("");
+       txtPassword.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
     /**
