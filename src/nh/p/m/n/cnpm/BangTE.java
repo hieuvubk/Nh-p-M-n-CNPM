@@ -82,7 +82,7 @@ private DefaultTableModel tblModel = new DefaultTableModel(header, 0);
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Danh sách trẻ em dưới 18 tuổi");
         setBounds(new java.awt.Rectangle(4, 3, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

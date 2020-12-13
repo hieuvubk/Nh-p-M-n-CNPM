@@ -46,13 +46,13 @@ public class MainMenu extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jEditorPane1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jLabel1.setText("Main Menu");
 
-        LogOut.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        LogOut.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         LogOut.setText("Log out");
         LogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,7 +60,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        dshs.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        dshs.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         dshs.setText("Lập danh sách học sinh");
         dshs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,29 +68,44 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        tre_em.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tre_em.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tre_em.setText("Trẻ em");
+        tre_em.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tre_emActionPerformed(evt);
+            }
+        });
 
-        Thong_ke.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        Thong_ke.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Thong_ke.setText("Thống kê");
+        Thong_ke.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Thong_keActionPerformed(evt);
+            }
+        });
 
-        Chi_tiet_ho.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        Chi_tiet_ho.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Chi_tiet_ho.setText("Chi tiết hộ gia đình");
+        Chi_tiet_ho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Chi_tiet_hoActionPerformed(evt);
+            }
+        });
 
-        qua.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        qua.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         qua.setText("Ghi nhận phần quà");
+        qua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jSeparator1)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -103,19 +118,23 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(dshs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Thong_ke, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tre_em, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Chi_tiet_ho, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(56, 56, 56))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tre_em, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Chi_tiet_ho, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+                        .addGap(19, 19, 19))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(LogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(161, 161, 161)
-                .addComponent(qua, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(LogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(qua)
+                        .addGap(148, 148, 148))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(179, 179, 179))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,9 +155,9 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Thong_ke)
                     .addComponent(Chi_tiet_ho))
-                .addGap(42, 42, 42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(qua)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         pack();
@@ -147,6 +166,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
         
         new DangNhap().setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_LogOutActionPerformed
 
     private void dshsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dshsActionPerformed
@@ -158,6 +178,22 @@ public class MainMenu extends javax.swing.JFrame {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_dshsActionPerformed
+
+    private void Thong_keActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Thong_keActionPerformed
+        new ThongKe().setVisible(true);
+    }//GEN-LAST:event_Thong_keActionPerformed
+
+    private void Chi_tiet_hoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Chi_tiet_hoActionPerformed
+        new ThongTinHo().setVisible(true);
+    }//GEN-LAST:event_Chi_tiet_hoActionPerformed
+
+    private void tre_emActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tre_emActionPerformed
+        new BangTE().setVisible(true);
+    }//GEN-LAST:event_tre_emActionPerformed
+
+    private void quaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quaActionPerformed
+        new GhiNhanQua().setVisible(true);
+    }//GEN-LAST:event_quaActionPerformed
 
     /**
      * @param args the command line arguments
