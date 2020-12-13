@@ -24,8 +24,8 @@ public class ThongTinHo extends javax.swing.JFrame {
      */
     private String header[] = { "Số hộ khẩu", "Chủ hộ"};
     private DefaultTableModel tblModel = new DefaultTableModel(header, 0);
-    private String nam;
-    private String suKien;
+    private String nam = "2020";
+    private String suKien = "Trung thu";
     private String maSuKien;
     public ThongTinHo() {
         initComponents();

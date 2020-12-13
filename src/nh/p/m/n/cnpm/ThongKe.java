@@ -24,8 +24,8 @@ public class ThongKe extends javax.swing.JFrame {
     
     private String header[] = {"Tổng phần quà", "Tổng giá trị"};
     private DefaultTableModel tblModel = new DefaultTableModel(header, 0);
-    private String suKien;
-    private String nam;
+    private String suKien = "Trung thu";
+    private String nam = "2020";
     
     public ThongKe() {
         
@@ -304,13 +304,17 @@ public class ThongKe extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(suKien == "Cuối năm"){
-            getDataCuoiNam();
-        }
+        if(this.suKien == null)
+            JOptionPane.showMessageDialog(null, "Chưa chọn sự kiện!");
         else{
-            getData();
+            if(suKien == "Cuối năm"){
+                getDataCuoiNam();
+            }
+            else{
+                getData();
+            }
         }
-            
+           
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -27,7 +27,7 @@ public class GhiNhanQua extends javax.swing.JFrame {
      * Creates new form GhiNhanQua
      */
     
-    private String tensukien;
+    private String tensukien = "Trung thu";
     Connection conn = null;
     Statement st = null;
     ResultSet rs = null;
@@ -89,31 +89,40 @@ public class GhiNhanQua extends javax.swing.JFrame {
             try{
                 String query = "INSERT INTO sukien(MaSuKien, TenSuKien, ThoiGian) VALUES (?,?,?)";
                 ps = conn.prepareStatement(query);
-                ps.setString(0, masukien);
-                ps.setString(1, tensukien);
-                ps.setDate(2, thoigian);
+                ps.setString(1, masukien);
+                ps.setString(2, tensukien);
+                ps.setDate(3, thoigian);
+                ps.addBatch();
+                 ps.executeBatch();
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Đã ghi nhận!");
                 return;
             }
+           
+            //conn.commit();
+            
             // them vao bang phat qua
             
             String ghinhan = "INSERT INTO phatqua(MaSuKien, HoTen, SoHoKhau, MaQua) VALUES (?,?,?,?)";
-            
-            while(!input.isEmpty()){
-                Vector hocsinh = (Vector)input.remove(0);
+            int i = 0;
+            while(i != input.size()){
+                
+                Vector hocsinh = (Vector)input.get(i++);
                 ps = conn.prepareStatement(ghinhan);
-                ps.setString(0, masukien);
-                ps.setString(1,(String)hocsinh.get(1));
-                ps.setString(2,(String)hocsinh.get(0));
+                ps.setString(1, masukien);
+                ps.setString(2,(String)hocsinh.get(1));
+                ps.setString(3,(String)hocsinh.get(0));
                 if((String)hocsinh.get(2) == "Giỏi")
-                    ps.setString(3,maqua[0]);
+                    ps.setString(4,maqua[0]);
                 else if((String)hocsinh.get(2) == "Tiên tiến")
-                    ps.setString(3,maqua[1]);
+                    ps.setString(4,maqua[1]);
                 else if((String)hocsinh.get(2) == "Khá")
-                    ps.setString(3,maqua[2]);
+                    ps.setString(4,maqua[2]);
+                ps.addBatch();
+                ps.executeBatch();
             }
             
+            //conn.commit();
             conn.close();
        } catch (Exception e) {
             e.printStackTrace();
@@ -162,6 +171,7 @@ public class GhiNhanQua extends javax.swing.JFrame {
             }
             int n = maqua.size();
             Random index = new Random();
+            
             // them ma su kien
             
             Date thoigian = new java.sql.Date(System.currentTimeMillis());
@@ -169,34 +179,46 @@ public class GhiNhanQua extends javax.swing.JFrame {
             try{
                 if(tensukien == "Trung thu"){
                     masukien = "TT" + java.util.Calendar.getInstance().get(Calendar.YEAR);
-                }else if(tensukien == "Tết thiếu nhi"){
+                }else if(tensukien == "Tết thiếu nhi 1-6"){
                     masukien = "TN" + java.util.Calendar.getInstance().get(Calendar.YEAR);
                 }
-                String query = "INSERT INTO sukien(MaSuKien, TenSuKien, ThoiGian) VALUES (?,?,?)";
+                //System.out.println(tensukien);
+                String query = "INSERT INTO sukien (MaSuKien, TenSuKien, ThoiGian) VALUES (?,?,?)";
                 ps = conn.prepareStatement(query);
-                ps.setString(0, masukien);
-                ps.setString(1, tensukien);
-                ps.setDate(2, thoigian);
+                
+                ps.setString(1, masukien);
+                ps.setString(2, tensukien);
+                ps.setDate(3, thoigian);
+                ps.addBatch();
+                ps.executeBatch();
             }catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Đã ghi nhận!");
+                JOptionPane.showMessageDialog(null, "Sự kiện đã tồn tại ghi nhận!");
                 return;
             }
             
+            //conn.commit();
             // them vao bang phat qua
             
             String ghinhan = "INSERT INTO phatqua(MaSuKien, HoTen, SoHoKhau, MaQua) VALUES (?,?,?,?)";
-            
-            while(!input.isEmpty()){
-                Vector hocsinh = (Vector)input.remove(0);
+            int i =0;
+         
+            while(i != input.size()){
+                
+                Vector hocsinh = (Vector)input.get(i++);
                 ps = conn.prepareStatement(ghinhan);
-                ps.setString(0, masukien);
-                ps.setString(1,(String)hocsinh.get(1));
-                ps.setString(2,(String)hocsinh.get(0));
-                ps.setString(3,(String)maqua.get(index.nextInt(n)));
+                ps.setString(1, masukien);
+                ps.setString(2,(String)hocsinh.get(1));
+                ps.setString(3,(String)hocsinh.get(0));
+                ps.setString(4,(String)maqua.get(index.nextInt(n)));
+                ps.addBatch();
+                ps.executeBatch();
   
             }
             
+            //conn.commit();
             conn.close();
+            JOptionPane.showMessageDialog(null, "Thành công!");
+            this.dispose();
        } catch (Exception e) {
             e.printStackTrace();
        }
@@ -297,10 +319,15 @@ public class GhiNhanQua extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if(this.tensukien == "Cuối năm")
-            GhiNhanQuaChoHS();
-        else
-            GhiNhanQuaChoTreEm();
+        if(this.tensukien == null)
+            JOptionPane.showMessageDialog(null, "Chưa chọn sự kiện!");
+        else{
+            if(this.tensukien == "Cuối năm")
+                GhiNhanQuaChoHS();
+            else
+                GhiNhanQuaChoTreEm();
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
