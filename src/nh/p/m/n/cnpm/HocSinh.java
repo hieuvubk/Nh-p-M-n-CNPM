@@ -118,6 +118,7 @@ public class HocSinh extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Danh sách học sinh");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
