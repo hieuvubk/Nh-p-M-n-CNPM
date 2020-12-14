@@ -141,11 +141,7 @@ public class HocSinh extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Danh sách học sinh");
-        setAlwaysOnTop(true);
-        setBackground(new java.awt.Color(255, 51, 102));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setForeground(new java.awt.Color(255, 204, 204));
-        setLocationByPlatform(true);
 
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable1.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
@@ -175,7 +171,7 @@ public class HocSinh extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -253,3 +249,4 @@ public class HocSinh extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration                   
 }
+
