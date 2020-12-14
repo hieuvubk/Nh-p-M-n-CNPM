@@ -56,10 +56,10 @@
                           <Component id="dshs" max="32767" attributes="0"/>
                           <Component id="Thong_ke" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="85" max="32767" attributes="0"/>
+                      <EmptySpace pref="66" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="tre_em" max="32767" attributes="0"/>
-                          <Component id="Chi_tiet_ho" pref="164" max="32767" attributes="0"/>
+                          <Component id="Chi_tiet_ho" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
@@ -152,7 +152,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tr&#x1ebb; em"/>
+        <Property name="text" type="java.lang.String" value="L&#x1ead;p danh s&#xe1;ch tr&#x1ebb; em"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tre_emActionPerformed"/>
